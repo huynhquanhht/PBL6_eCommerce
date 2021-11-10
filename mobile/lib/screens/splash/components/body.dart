@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_shop_app/constants.dart';
-import 'package:online_shop_app/screens/screen_controller/screen_controller.dart';
+import 'package:online_shop_app/screens/home/home_screen.dart';
 import 'package:online_shop_app/size_config.dart';
 
 // This is the best practice
@@ -71,7 +71,7 @@ class _BodyState extends State<Body> {
                       press: () {
                         Navigator.pushNamed(
                           context,
-                          ScreenController.routeName,
+                          HomeScreen.routeName,
                         );
                       },
                     ),

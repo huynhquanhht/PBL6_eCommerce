@@ -4,7 +4,6 @@ import 'package:online_shop_app/constants.dart';
 import 'package:online_shop_app/local_storage/shared_preferences.dart';
 import 'package:online_shop_app/models/LoginRequest.dart';
 import 'package:online_shop_app/models/RegisterRequest.dart';
-// const SERVER_IP = 'https://localhost:5001';
 
 class AccountService {
   AccountService() {}
@@ -31,8 +30,8 @@ class AccountService {
       print('Response status: ${res.statusCode}');
       print('Response body: ${res.body}');
       if (jsonResponse != null) {
-        // sharedPreferences.setString("token", jsonResponse['resultObj']);
         LocalStorage().saveToken(jsonResponse['resultObj']);
+        print('token: ${jsonResponse['resultObj']}');
       }
     }
     return res.statusCode;

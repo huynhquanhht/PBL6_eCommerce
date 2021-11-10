@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:online_shop_app/components/coustom_bottom_nav_bar.dart';
 import 'package:online_shop_app/screens/home/components/body.dart';
+
+import '../../enums.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -13,6 +16,7 @@ class HomeScreen extends StatelessWidget {
       //   backgroundColor: Colors.blue.shade200,
       // ),
       body: Body(),
+      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
     );
   }
 }

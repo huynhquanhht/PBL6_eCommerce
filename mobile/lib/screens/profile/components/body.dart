@@ -15,7 +15,7 @@ class Body extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: getProportionateScreenHeight(40)),
-          ProfilePic(),
+          // ProfilePic(),
           SizedBox(height: 20),
           ProfileMenu(
             text: "Thông tin cá nhân",
@@ -44,7 +44,7 @@ class Body extends StatelessWidget {
             icon: "assets/icons/Log out.svg",
             press: () {
               LocalStorage().removeToken();
-              Navigator.pushNamed(context, ScreenController.routeName);
+              Navigator.pop(context);
               // final provider =
               //     Provider.of<GoogleSignInProvider>(context, listen: false);
               // provider.logout();

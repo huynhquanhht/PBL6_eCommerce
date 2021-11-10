@@ -5,6 +5,7 @@ import 'package:online_shop_app/function/dialog.dart';
 import 'package:online_shop_app/components/form_error.dart';
 import 'package:online_shop_app/helper/keyboard.dart';
 import 'package:online_shop_app/models/LoginRequest.dart';
+import 'package:online_shop_app/screens/profile/profile_screen.dart';
 import 'package:online_shop_app/screens/screen_controller/screen_controller.dart';
 import 'package:online_shop_app/services/account_service.dart';
 import '../../../components/default_button.dart';
@@ -91,7 +92,7 @@ class _SignFormState extends State<SignForm> {
                 KeyboardUtil.hideKeyboard(context);
                 var responseCode = await accountService.Login(loginRequest);
                 if (responseCode == 200) {
-                  Navigator.pushNamed(context, ScreenController.routeName);
+                  Navigator.pushNamed(context, ProfileScreen.routeName);
                   displayDialog(
                     context,
                     "Message",

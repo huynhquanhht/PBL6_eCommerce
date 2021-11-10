@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:online_shop_app/function/local_storage.dart';
+import 'package:online_shop_app/local_storage/shared_preferences.dart';
 import 'package:online_shop_app/screens/home/home_screen.dart';
+import 'package:online_shop_app/screens/profile/profile_screen.dart';
+import 'package:online_shop_app/screens/sign_in/sign_in_screen.dart';
 // import 'package:shop_app/screens/profile/profile_screen.dart';
 
 import '../constants.dart';
@@ -17,6 +21,8 @@ class CustomBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Color inActiveIconColor = Color(0xFFB6B6B6);
+
+    // String currentToken;
     return Container(
       padding: EdgeInsets.symmetric(vertical: 14),
       decoration: BoxDecoration(
@@ -57,17 +63,30 @@ class CustomBottomNavBar extends StatelessWidget {
                 onPressed: () {},
               ),
               IconButton(
-                  icon: SvgPicture.asset(
-                    "assets/icons/User Icon.svg",
-                    color: MenuState.profile == selectedMenu
-                        ? kPrimaryColor
-                        : inActiveIconColor,
-                  ),
-                  onPressed: () {}
-                  // Navigator.pushNamed(context, ProfileScreen.routeName),
-                  ),
+                icon: SvgPicture.asset(
+                  "assets/icons/User Icon.svg",
+                  color: MenuState.profile == selectedMenu
+                      ? kPrimaryColor
+                      : inActiveIconColor,
+                ),
+                onPressed: () async {
+                  // LocalStorage accountService = LocalStorage();
+                  // var currentToken = await accountService.getTokenStorage();
+                  var currentToken = await getTokenStorage();
+                  if (currentToken == "") {
+                    Navigator.pushNamed(context, SignInScreen.routeName);
+                  } else {
+                    Navigator.pushNamed(context, ProfileScreen.routeName);
+                  }
+                },
+              ),
             ],
           )),
     );
   }
+
+  // void getTokenStorage() async {
+  //   LocalStorage accountService = LocalStorage();
+  //   currentToken = await accountService.getTokenStorage();
+  // }
 }

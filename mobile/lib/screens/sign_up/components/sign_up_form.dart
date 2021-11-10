@@ -23,6 +23,7 @@ class _SignUpFormState extends State<SignUpForm> {
   String? phoneNumber;
   String? fullName;
   String? email;
+  String? address;
   String? password;
   String? confirm_password;
   bool remember = false;
@@ -33,6 +34,7 @@ class _SignUpFormState extends State<SignUpForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
@@ -63,6 +65,8 @@ class _SignUpFormState extends State<SignUpForm> {
           SizedBox(height: getProportionateScreenHeight(12)),
           buildPhoneNumberFormField(),
           SizedBox(height: getProportionateScreenHeight(12)),
+          buildAddressFormField(),
+          SizedBox(height: getProportionateScreenHeight(12)),
           buildUserNameFormField(),
           SizedBox(height: getProportionateScreenHeight(12)),
           buildPasswordFormField(),
@@ -81,6 +85,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   email: _emailController.text,
                   phoneNumber: _phoneNumberController.text,
                   fullName: _fullNameController.text,
+                  address: _addressController.text,
                 );
                 AccountService accountService = AccountService();
                 if (_formKey.currentState!.validate()) {
@@ -240,6 +245,33 @@ class _SignUpFormState extends State<SignUpForm> {
         hintText: "Nhập email",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
+      ),
+    );
+  }
+
+  TextFormField buildAddressFormField() {
+    return TextFormField(
+      controller: _addressController,
+      keyboardType: TextInputType.name,
+      onSaved: (newValue) => address = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kAddressNullError);
+        }
+        return null;
+      },
+      validator: (value) {
+        if (value!.isEmpty) {
+          addError(error: kAddressNullError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "Địa chỉ",
+        hintText: "Nhập địa chỉ",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/pin.svg"),
       ),
     );
   }

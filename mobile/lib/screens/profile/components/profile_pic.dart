@@ -7,25 +7,14 @@ class ProfilePic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 115,
-      width: 115,
-      child: Stack(
-        fit: StackFit.expand,
-        clipBehavior: Clip.none,
-        children: [
-          CircleAvatar(
-            backgroundImage: AssetImage("assets/images/Profile Image.png"),
-          ),
-          Positioned(
-            right: -16,
-            bottom: 0,
-            child: SizedBox(
-              height: 46,
-              width: 46,
-            ),
-          )
-        ],
+    return Container(
+      width: 100.00,
+      height: 100.00,
+      decoration: new BoxDecoration(
+        image: new DecorationImage(
+          image: ExactAssetImage('assets/images/Logo 2@2x.png'),
+          fit: BoxFit.fitHeight,
+        ),
       ),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dropdown/flutter_dropdown.dart';
-
 import '../size_config.dart';
 
 class CustomDropDown extends StatelessWidget {

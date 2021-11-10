@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:online_shop_app/screens/sign_in/sign_in_screen.dart';
-// import 'package:shop_app/screens/sign_up/sign_up_screen.dart';
-
 import '../size_config.dart';
 
 class AvailableAccountText extends StatelessWidget {

@@ -1,5 +1,3 @@
-import 'package:jwt_decode/jwt_decode.dart';
-
 class UserUpdate {
   String fullName;
   String email;

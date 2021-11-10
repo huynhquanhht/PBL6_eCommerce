@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:online_shop_app/models/UserUpdate.dart';
-import 'package:online_shop_app/screens/profile/components/profile_pic.dart';
 import 'package:online_shop_app/screens/profile_detail/components/update_form.dart';
 import 'package:online_shop_app/services/user_service.dart';
 

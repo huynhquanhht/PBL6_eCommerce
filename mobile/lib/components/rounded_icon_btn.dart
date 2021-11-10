@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:online_shop_app/constants.dart';
-
 import '../size_config.dart';
 
 class RoundedIconBtn extends StatelessWidget {

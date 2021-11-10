@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:online_shop_app/components/custom_surfix_icon.dart';
 import 'package:online_shop_app/components/default_button.dart';
 import 'package:online_shop_app/components/form_error.dart';
 import 'package:online_shop_app/models/UserUpdate.dart';
-import 'package:online_shop_app/services/user_service.dart';
 // import 'package:online_shop_app/screens/complete_profile/complete_profile_screen.dart';
 
 import '../../../constants.dart';
@@ -22,24 +20,10 @@ class _UpdateFormState extends State<UpdateForm> {
   final _formKey = GlobalKey<FormState>();
   bool remember = false;
   final List<String?> errors = [];
-  // late UserUpdate userUpdate;
   String? phoneNumber;
   String? fullname;
   String? email;
   String? address;
-
-  // Future<Map<String, dynamic>> getCurrentUserUpdate() async {
-  //   UserService userService = new UserService();
-  //   Map<String, dynamic> response = await userService.GetUserByToken();
-
-  //   // setState(() {
-  //   //   fullname = "${response['resultObj']['fullname']}";
-  //   //   email = "${response['resultObj']['email']}";
-  //   //   phoneNumber = "${response['resultObj']['phoneNumber']}";
-  //   //   address = "${response['resultObj']['address']}";
-  //   // });
-  //   return response;
-  // }
 
   void addError({String? error}) {
     if (!errors.contains(error))
@@ -55,28 +39,8 @@ class _UpdateFormState extends State<UpdateForm> {
       });
   }
 
-  // void setUserUpdate() {
-  //   // userUpdate = new UserUpdate(
-  //   //   fullName: "HUy",
-  //   //   email: "qhnguyen81100@gmail.com",
-  //   //   phoneNumber: "0123456789",
-  //   //   address: "Hòa Quý",
-  //   // );
-  //   print("fullName: $fullname");
-  // }
-
   @override
   Widget build(BuildContext context) {
-    // getCurrentUserUpdate().then((value) {
-    //   print(value['resultObj']['email']);
-    //   // setState(() {
-    //   //   fn = value['resultObj']['fullname'];
-    //   //   em = value['resultObj']['email'];
-    //   //   pn = value['resultObj']['phoneNumber'];
-    //   //   ad = value['resultObj']['address'];
-    //   // });
-    // });
-    // print(userUpdate);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Form(
@@ -91,10 +55,6 @@ class _UpdateFormState extends State<UpdateForm> {
                 "${widget.currentUserUpdate.phoneNumber}"),
             SizedBox(height: getProportionateScreenHeight(12)),
             buildAddressFormField("${widget.currentUserUpdate.address}"),
-            // SizedBox(height: getProportionateScreenHeight(12)),
-            // buildPasswordFormField(),
-            // SizedBox(height: getProportionateScreenHeight(12)),
-            // buildConformPassFormField(),
             FormError(errors: errors),
             SizedBox(height: getProportionateScreenHeight(20)),
             DefaultButton(

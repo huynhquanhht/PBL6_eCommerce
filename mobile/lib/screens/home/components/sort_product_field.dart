@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:online_shop_app/components/custom_btn.dart';
 import 'package:online_shop_app/components/custom_drop_down.dart';
 import 'package:online_shop_app/constants.dart';
-
 import '../../../size_config.dart';
 
 class SortProductField extends StatelessWidget {

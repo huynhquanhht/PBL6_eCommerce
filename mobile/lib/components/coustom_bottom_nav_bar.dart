@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:online_shop_app/function/local_storage.dart';
-import 'package:online_shop_app/local_storage/shared_preferences.dart';
 import 'package:online_shop_app/screens/home/home_screen.dart';
 import 'package:online_shop_app/screens/profile/profile_screen.dart';
 import 'package:online_shop_app/screens/sign_in/sign_in_screen.dart';
-// import 'package:shop_app/screens/profile/profile_screen.dart';
-
 import '../constants.dart';
 import '../enums.dart';
 

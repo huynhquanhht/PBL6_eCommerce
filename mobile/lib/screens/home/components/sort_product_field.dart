@@ -34,7 +34,7 @@ class SortProductField extends StatelessWidget {
             press: () {},
           ),
           CustomDropDown(
-            items: ["cao đến thấp", "thấp đến cao"],
+            items: ["Giá tăng", "Giá giảm"],
             text: "Giá",
             color: kPrimaryColor,
           ),

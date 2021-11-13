@@ -45,4 +45,27 @@ class UserService {
       throw Exception("Failed to get current user!");
     }
   }
+
+  Future<int> UpdateUser(UserUpdate userUpdate) async {
+    var url = "${SERVER_IP}/api/Users/Update";
+    Map data = {
+      "fullName": userUpdate.fullName,
+      "email": userUpdate.email,
+      "phoneNumber": userUpdate.phoneNumber,
+      "address": userUpdate.address,
+    };
+    var token = await getTokenStorage();
+    var res = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+      body: json.encode(data),
+    );
+    print('Response reponse update: ${res.body}');
+
+    // return json.decode(res.body);
+    return res.statusCode;
+  }
 }

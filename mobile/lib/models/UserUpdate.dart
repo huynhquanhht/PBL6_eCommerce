@@ -40,7 +40,9 @@ class UserUpdate {
       fullName: json['resultObj']['fullname'],
       email: json['resultObj']['email'],
       phoneNumber: json['resultObj']['phoneNumber'],
-      address: json['resultObj']['address'],
+      address: json['resultObj']['address'] != null
+          ? json['resultObj']['address']
+          : "",
     );
   }
 }

@@ -43,6 +43,7 @@ class AccountService {
       "fullName": registerRequest.fullName,
       "email": registerRequest.email,
       "phoneNumber": registerRequest.phoneNumber,
+      "address": registerRequest.address,
       "username": registerRequest.username,
       "password": registerRequest.password,
     };

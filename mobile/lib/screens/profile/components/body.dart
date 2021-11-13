@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_shop_app/components/custom_dialog.dart';
 import 'package:online_shop_app/local_storage/shared_preferences.dart';
 import 'package:online_shop_app/screens/profile_detail/profile_detail.dart';
 import 'package:online_shop_app/screens/screen_controller/screen_controller.dart';
@@ -42,13 +43,18 @@ class Body extends StatelessWidget {
           ProfileMenu(
             text: "Đăng xuất",
             icon: "assets/icons/Log out.svg",
-            press: () {
-              LocalStorage().removeToken();
-              Navigator.pop(context);
-              // final provider =
-              //     Provider.of<GoogleSignInProvider>(context, listen: false);
-              // provider.logout();
+            press: () async {
+              // LocalStorage().removeToken();
               // Navigator.pop(context);
+              final action = await Dialogs.yesAbortDialog(
+                context,
+                'Thông báo',
+                'Bạn có chắc muốn đăng xuất tài khoản này!',
+              );
+              if (action == DialogAction.yes) {
+                LocalStorage().removeToken();
+                Navigator.pop(context);
+              }
             },
           ),
         ],

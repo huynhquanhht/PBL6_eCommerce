@@ -32,16 +32,16 @@ class HomeHeader extends StatelessWidget {
             },
             // press: () => Navigator.pushNamed(context, CartScreen.routeName),
           ),
-          IconBtnWithCounter(
-            svgSrc: "assets/icons/Bell.svg",
-            numOfitem: 3,
-            press: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => DropDown()),
-              // );
-            },
-          ),
+          // IconBtnWithCounter(
+          //   svgSrc: "assets/icons/Bell.svg",
+          //   numOfitem: 3,
+          //   press: () {
+          //     // Navigator.push(
+          //     //   context,
+          //     //   MaterialPageRoute(builder: (context) => DropDown()),
+          //     // );
+          //   },
+          // ),
         ],
       ),
     );

@@ -77,38 +77,67 @@ class _SignUpFormState extends State<SignUpForm> {
           DefaultButton(
             text: "ĐĂNG KÝ",
             press: () async {
+              RegisterRequest registerRequest = RegisterRequest(
+                username: _usernameController.text,
+                password: _passwordController.text,
+                email: _emailController.text,
+                phoneNumber: _phoneNumberController.text,
+                fullName: _fullNameController.text,
+                address: _addressController.text,
+              );
+              AccountService accountService = AccountService();
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                RegisterRequest registerRequest = RegisterRequest(
-                  username: _usernameController.text,
-                  password: _passwordController.text,
-                  email: _emailController.text,
-                  phoneNumber: _phoneNumberController.text,
-                  fullName: _fullNameController.text,
-                  address: _addressController.text,
-                );
-                AccountService accountService = AccountService();
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
-                  KeyboardUtil.hideKeyboard(context);
-                  var responseCode =
-                      await accountService.Register(registerRequest);
-                  if (responseCode == 200) {
-                    Navigator.pop(context);
-                    displayDialog(
-                      context,
-                      "Message",
-                      "Register Successfully!",
-                    );
-                  } else {
-                    displayDialog(
-                      context,
-                      "An Error Occurred",
-                      "No account was found matching that username and password!",
-                    );
-                  }
+                KeyboardUtil.hideKeyboard(context);
+                var responseCode =
+                    await accountService.Register(registerRequest);
+                if (responseCode == 200) {
+                  Navigator.pop(context);
+                  displayDialog(
+                    context,
+                    "Message",
+                    "Register Successfully!",
+                  );
+                } else {
+                  displayDialog(
+                    context,
+                    "An Error Occurred",
+                    "Failed register!",
+                  );
                 }
               }
+              // if (_formKey.currentState!.validate()) {
+              //   _formKey.currentState!.save();
+              //   RegisterRequest registerRequest = RegisterRequest(
+              //     username: _usernameController.text,
+              //     password: _passwordController.text,
+              //     email: _emailController.text,
+              //     phoneNumber: _phoneNumberController.text,
+              //     fullName: _fullNameController.text,
+              //     address: _addressController.text,
+              //   );
+              //   AccountService accountService = AccountService();
+              //   if (_formKey.currentState!.validate()) {
+              //     _formKey.currentState!.save();
+              //     KeyboardUtil.hideKeyboard(context);
+              //     var responseCode =
+              //         await accountService.Register(registerRequest);
+              //     if (responseCode == 200) {
+              //       Navigator.pop(context);
+              //       displayDialog(
+              //         context,
+              //         "Message",
+              //         "Register Successfully!",
+              //       );
+              //     } else {
+              //       displayDialog(
+              //         context,
+              //         "An Error Occurred",
+              //         "Failed register!",
+              //       );
+              //     }
+              //   }
+              // }
             },
           ),
         ],

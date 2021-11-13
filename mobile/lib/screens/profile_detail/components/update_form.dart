@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:online_shop_app/components/custom_surfix_icon.dart';
 import 'package:online_shop_app/components/default_button.dart';
 import 'package:online_shop_app/components/form_error.dart';
+import 'package:online_shop_app/function/dialog.dart';
+import 'package:online_shop_app/helper/keyboard.dart';
 import 'package:online_shop_app/models/UserUpdate.dart';
+import 'package:online_shop_app/services/user_service.dart';
 // import 'package:online_shop_app/screens/complete_profile/complete_profile_screen.dart';
 
 import '../../../constants.dart';
@@ -13,7 +16,7 @@ class UpdateForm extends StatefulWidget {
   const UpdateForm({Key? key, required this.currentUserUpdate})
       : super(key: key);
   @override
-  _UpdateFormState createState() => _UpdateFormState();
+  _UpdateFormState createState() => _UpdateFormState(this.currentUserUpdate);
 }
 
 class _UpdateFormState extends State<UpdateForm> {
@@ -24,6 +27,26 @@ class _UpdateFormState extends State<UpdateForm> {
   String? fullname;
   String? email;
   String? address;
+
+  late TextEditingController _fullNameController;
+  late TextEditingController _emailController;
+  late TextEditingController _phoneNumberController;
+  late TextEditingController _addressController;
+
+  _UpdateFormState(UserUpdate currentUserUpdate) {
+    this._userUpdate = currentUserUpdate;
+    // fullname = _userUpdate.fullName;
+    // email = _userUpdate.email;
+    // phoneNumber = _userUpdate.phoneNumber;
+    // address = _userUpdate.address;
+    _fullNameController =
+        TextEditingController(text: "${_userUpdate.fullName}");
+    _emailController = TextEditingController(text: "${_userUpdate.email}");
+    _phoneNumberController =
+        TextEditingController(text: "${_userUpdate.phoneNumber}");
+    _addressController = TextEditingController(text: "${_userUpdate.address}");
+  }
+  late UserUpdate _userUpdate;
 
   void addError({String? error}) {
     if (!errors.contains(error))
@@ -47,23 +70,46 @@ class _UpdateFormState extends State<UpdateForm> {
         key: _formKey,
         child: Column(
           children: [
-            buildFullNameFormField("${widget.currentUserUpdate.fullName}"),
+            buildFullNameFormField(),
             SizedBox(height: getProportionateScreenHeight(12)),
-            buildEmailFormField("${widget.currentUserUpdate.email}"),
+            buildEmailFormField(),
             SizedBox(height: getProportionateScreenHeight(12)),
-            buildPhoneNumberFormField(
-                "${widget.currentUserUpdate.phoneNumber}"),
+            buildPhoneNumberFormField(),
             SizedBox(height: getProportionateScreenHeight(12)),
-            buildAddressFormField("${widget.currentUserUpdate.address}"),
+            buildAddressFormField(),
             FormError(errors: errors),
             SizedBox(height: getProportionateScreenHeight(20)),
             DefaultButton(
               text: "Cập nhật",
-              press: () {
+              press: () async {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
-                  // if all are valid then go to success screen
-                  // Navigator.pushNamed(context, CompleteProfileScreen.routeName);
+                  UserUpdate userUpdate = UserUpdate(
+                    email: _emailController.text,
+                    phoneNumber: _phoneNumberController.text,
+                    fullName: _fullNameController.text,
+                    address: _addressController.text,
+                  );
+                  UserService userService = UserService();
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
+                    KeyboardUtil.hideKeyboard(context);
+                    var responseCode = await userService.UpdateUser(userUpdate);
+                    if (responseCode == 200) {
+                      Navigator.pop(context);
+                      displayDialog(
+                        context,
+                        "Message",
+                        "Update user Successfully!",
+                      );
+                    } else {
+                      displayDialog(
+                        context,
+                        "An Error Occurred",
+                        "Failed update user!",
+                      );
+                    }
+                  }
                 }
               },
             ),
@@ -73,9 +119,9 @@ class _UpdateFormState extends State<UpdateForm> {
     );
   }
 
-  TextFormField buildEmailFormField(String Email) {
+  TextFormField buildEmailFormField() {
     return TextFormField(
-      initialValue: "$Email",
+      controller: _emailController,
       keyboardType: TextInputType.emailAddress,
       onSaved: (newValue) => email = newValue,
       onChanged: (value) {
@@ -105,7 +151,7 @@ class _UpdateFormState extends State<UpdateForm> {
     );
   }
 
-  TextFormField buildFullNameFormField(String Fullname) {
+  TextFormField buildFullNameFormField() {
     return TextFormField(
       // keyboardType: TextInputType.emailAddress,
       // onSaved: (newValue) => email = newValue,
@@ -127,7 +173,8 @@ class _UpdateFormState extends State<UpdateForm> {
       //   }
       //   return null;
       // },
-      initialValue: "${Fullname}",
+
+      controller: _fullNameController,
       style: new TextStyle(fontWeight: FontWeight.normal, color: Colors.black),
       decoration: InputDecoration(
         labelText: "Họ và tên",
@@ -138,7 +185,7 @@ class _UpdateFormState extends State<UpdateForm> {
     );
   }
 
-  TextFormField buildAddressFormField(String Address) {
+  TextFormField buildAddressFormField() {
     return TextFormField(
       // keyboardType: TextInputType.emailAddress,
       // onSaved: (newValue) => email = newValue,
@@ -160,7 +207,7 @@ class _UpdateFormState extends State<UpdateForm> {
       //   }
       //   return null;
       // },
-      initialValue: "${Address}",
+      controller: _addressController,
       style: new TextStyle(fontWeight: FontWeight.normal, color: Colors.black),
       decoration: InputDecoration(
         labelText: "Địa chỉ",
@@ -171,9 +218,9 @@ class _UpdateFormState extends State<UpdateForm> {
     );
   }
 
-  TextFormField buildPhoneNumberFormField(String PhoneNumber) {
+  TextFormField buildPhoneNumberFormField() {
     return TextFormField(
-      initialValue: "${PhoneNumber}",
+      controller: _phoneNumberController,
       keyboardType: TextInputType.phone,
       // onSaved: (newValue) => email = newValue,
       // onChanged: (value) {

@@ -11,27 +11,27 @@ class SpecialOffers extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-          child: SectionTitle(
-            title: "Special for you",
-            press: () {},
-          ),
-        ),
-        SizedBox(height: getProportionateScreenWidth(20)),
+        // Padding(
+        //   padding:
+        //       EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+        //   child: SectionTitle(
+        //     title: "Special for you",
+        //     press: () {},
+        //   ),
+        // ),
+        // SizedBox(height: getProportionateScreenWidth(20)),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
               SpecialOfferCard(
-                image: "assets/images/Image Banner 2.png",
+                image: "assets/images/banner1.png",
                 category: "Smartphone",
                 numOfBrands: 18,
                 press: () {},
               ),
               SpecialOfferCard(
-                image: "assets/images/Image Banner 3.png",
+                image: "assets/images/banner2.jpg",
                 category: "Fashion",
                 numOfBrands: 24,
                 press: () {},
@@ -65,49 +65,50 @@ class SpecialOfferCard extends StatelessWidget {
       child: GestureDetector(
         onTap: press,
         child: SizedBox(
-          width: getProportionateScreenWidth(242),
-          height: getProportionateScreenWidth(150),
+          width: getProportionateScreenWidth(250),
+          height: getProportionateScreenHeight(200),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Stack(
               children: [
                 Image.asset(
                   image,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color(0xFF343434).withOpacity(0.4),
-                        Color(0xFF343434).withOpacity(0.15),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: getProportionateScreenWidth(15.0),
-                    vertical: getProportionateScreenWidth(10),
-                  ),
-                  child: Text.rich(
-                    TextSpan(
-                      style: TextStyle(color: Colors.white),
-                      children: [
-                        TextSpan(
-                          text: "$category\n",
-                          style: TextStyle(
-                            fontSize: getProportionateScreenWidth(18),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        TextSpan(text: "$numOfBrands Brands")
-                      ],
-                    ),
-                  ),
-                ),
+
+                // Container(
+                //   decoration: BoxDecoration(
+                //     gradient: LinearGradient(
+                //       begin: Alignment.topCenter,
+                //       end: Alignment.bottomCenter,
+                //       colors: [
+                //         Color(0xFF343434).withOpacity(0.4),
+                //         Color(0xFF343434).withOpacity(0.15),
+                //       ],
+                //     ),
+                //   ),
+                // ),
+                // Padding(
+                //   padding: EdgeInsets.symmetric(
+                //     horizontal: getProportionateScreenWidth(15.0),
+                //     vertical: getProportionateScreenWidth(10),
+                //   ),
+                //   // child: Text.rich(
+                //   //   TextSpan(
+                //   //     style: TextStyle(color: Colors.white),
+                //   //     children: [
+                //   //       TextSpan(
+                //   //         text: "$category\n",
+                //   //         style: TextStyle(
+                //   //           fontSize: getProportionateScreenWidth(18),
+                //   //           fontWeight: FontWeight.bold,
+                //   //         ),
+                //   //       ),
+                //   //       TextSpan(text: "$numOfBrands Brands")
+                //   //     ],
+                //   //   ),
+                //   // ),
+                // ),
               ],
             ),
           ),
